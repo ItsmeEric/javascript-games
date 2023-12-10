@@ -6,3 +6,6 @@ canvas.height = 64 * 9; // 576
 
 c.fillStyle = "#fff";
 c.fillRect(0, 0, canvas.width, canvas.height);
+
+c.fillStyle = "#F00";
+c.fillRect(100, 100, 100, 100);
