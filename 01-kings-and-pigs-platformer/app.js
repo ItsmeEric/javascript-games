@@ -6,6 +6,9 @@ canvas.height = 64 * 9; // 576
 
 // initial Y coordinate position
 let y = 100;
+
+const height = 100;
+let bottom = y + 100;
 function animate() {
   window.requestAnimationFrame(animate);
   // draw canvas background
@@ -15,7 +18,11 @@ function animate() {
   // draw the rectangle and move its Y coordinate
   c.fillStyle = "#F00";
   c.fillRect(100, y, 100, 100);
-  y++;
+
+  if (bottom < canvas.height) {
+    y++;
+    bottom = y + 100;
+  }
 }
 
 animate();
