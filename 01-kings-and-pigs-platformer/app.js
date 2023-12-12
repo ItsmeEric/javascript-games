@@ -4,22 +4,6 @@ const c = canvas.getContext("2d");
 canvas.width = 64 * 16; // 1024
 canvas.height = 64 * 9; // 576
 
-class Sprite {
-  constructor({ position, imageSrc }) {
-    this.position = position;
-    this.image = new Image();
-    this.image.onload = () => {
-      this.loaded = true;
-    };
-    this.image.src = imageSrc;
-    this.loaded = false;
-  }
-  draw() {
-    if (!this.loaded) return;
-    c.drawImage(this.image, this.position.x, this.position.y);
-  }
-}
-
 const backgroundLevel1 = new Sprite({
   position: {
     x: 0,
