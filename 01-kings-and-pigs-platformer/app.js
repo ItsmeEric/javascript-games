@@ -4,6 +4,30 @@ const c = canvas.getContext("2d");
 canvas.width = 64 * 16; // 1024
 canvas.height = 64 * 9; // 576
 
+class Sprite {
+  constructor({ position, imageSrc }) {
+    this.position = position;
+    this.image = new Image();
+    this.image.onload = () => {
+      this.loaded = true;
+    };
+    this.image.src = imageSrc;
+    this.loaded = false;
+  }
+  draw() {
+    if (!this.loaded) return;
+    c.drawImage(this.image, this.position.x, this.position.y);
+  }
+}
+
+const backgroundLevel1 = new Sprite({
+  position: {
+    x: 0,
+    y: 0,
+  },
+  imageSrc: "./img/backgroundLevel1.png",
+});
+
 const player = new Player();
 
 const keys = {
@@ -24,9 +48,7 @@ const keys = {
 function animate() {
   window.requestAnimationFrame(animate);
   // draw canvas background
-  c.fillStyle = "#fff";
-  c.fillRect(0, 0, canvas.width, canvas.height);
-
+  backgroundLevel1.draw();
   player.velocity.x = 0;
   if (keys.a.pressed) player.velocity.x = -5;
   else if (keys.d.pressed) player.velocity.x = 5;
